@@ -21,6 +21,8 @@ public class HelloTraceV2 {
         return new TraceStatus(traceId, startTimeMs, message);
     }
 
+    // 트랜잭션ID와 메서드 호출의 깊이를 표현하ㅏ는 가장 단순한 방법은 첫 로그에서 사용한 데이터들을 다음 로그에 넘겨주면 됨
+    // 현재 로그의 상태 정보인 트랜잭션ID와 level은 TraceId에 포함되어 있다. TraceId를 다음 로그에 넘겨주면 됨
     public TraceStatus beginSync(TraceId beforeTraceId, String message) {
         TraceId nextId = beforeTraceId.createNextId();
         long startTimeMs = System.currentTimeMillis();
