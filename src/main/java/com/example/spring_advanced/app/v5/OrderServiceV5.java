@@ -1,26 +1,28 @@
 package com.example.spring_advanced.app.v5;
 
+import com.example.spring_advanced.trace.callback.TraceTemplate;
 import com.example.spring_advanced.trace.logtrace.LogTrace;
 import com.example.spring_advanced.trace.template.AbstractTemplate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class OrderServiceV5 {
 
     private final OrderRepositoryV5 orderRepository;
-    private final LogTrace trace;
+    private final TraceTemplate template;
+
+    public OrderServiceV5(OrderRepositoryV5 orderRepository, LogTrace trace) {
+        this.orderRepository = orderRepository;
+        this.template = new TraceTemplate(trace);
+    }
 
     public void orderItem(String itemId) {
-        AbstractTemplate<Void> template = new AbstractTemplate<>(trace) {
-            @Override
-            protected Void call() {
-                orderRepository.save(itemId);
-                return null;
-            }
-        };
-        template.execute("OrderService.orderItem()");
+
+         template.execute("OrderService.orderItem()" , () -> {
+            orderRepository.save(itemId);
+            return null;
+        });
     }
 
     // 1. orderItem()은 파라미터로 전달 받은 traceId를 사용해서 trace.beginSync()를 실행
