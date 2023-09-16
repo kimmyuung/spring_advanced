@@ -1,11 +1,13 @@
 package com.example.spring_advanced;
 
 import com.example.spring_advanced.config.AppV6Config;
+import com.example.spring_advanced.config.AppV7Config;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-@Import(AppV6Config.class)
+//@Import(AppV6Config.class)
+@Import({AppV7Config.class , AppV6Config.class})
 // 클래스를 스프링 빈으로 등록
 // 일반적으로 설정 파일 등록 시 사용되나 스프링 빈 등록 시에도 사용이 가능
 @SpringBootApplication(scanBasePackages = "com.example.spring_advanced.app.v6_proxy")
