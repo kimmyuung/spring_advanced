@@ -2,12 +2,17 @@ package com.example.spring_advanced;
 
 import com.example.spring_advanced.config.AppV6Config;
 import com.example.spring_advanced.config.AppV7Config;
+import com.example.spring_advanced.config.v6_proxy.interface_proxy.InterfaceProxyConfig;
+import com.example.spring_advanced.trace.logtrace.LogTrace;
+import com.example.spring_advanced.trace.logtrace.ThreadLocalLogTrace;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
 //@Import(AppV6Config.class)
-@Import({AppV7Config.class , AppV6Config.class})
+//@Import({AppV7Config.class , AppV6Config.class})
+@Import(InterfaceProxyConfig.class)
 // 클래스를 스프링 빈으로 등록
 // 일반적으로 설정 파일 등록 시 사용되나 스프링 빈 등록 시에도 사용이 가능
 @SpringBootApplication(scanBasePackages = "com.example.spring_advanced.app.v6_proxy")
@@ -19,4 +24,8 @@ public class SpringAdvancedApplication {
         SpringApplication.run(SpringAdvancedApplication.class, args);
     }
 
+    @Bean
+    public LogTrace trace() {
+        return new ThreadLocalLogTrace();
+    }
 }

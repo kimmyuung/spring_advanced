@@ -1,8 +1,6 @@
 package com.example.spring_advanced.pureproxy.decorator;
 
-import com.example.spring_advanced.pureproxy.decorator.code.Component;
-import com.example.spring_advanced.pureproxy.decorator.code.DecoratorPatternClient;
-import com.example.spring_advanced.pureproxy.decorator.code.RealComponent;
+import com.example.spring_advanced.pureproxy.decorator.code.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -14,5 +12,26 @@ public class DecoratorPatternTest {
         Component realComponent = new RealComponent();
         DecoratorPatternClient decoratorPatternClient = new DecoratorPatternClient(realComponent);
         decoratorPatternClient.execute();
+    }
+
+    @Test
+    void decorator1() {
+        Component realComponent = new RealComponent();
+        Component messageDecorator = new MessageDecorate(realComponent);
+        DecoratorPatternClient client = new DecoratorPatternClient(messageDecorator);
+
+        client.execute();
+    }
+    @Test
+    void decorator2() {
+        Component realComponent = new RealComponent();
+
+        Component messageDecorator = new MessageDecorate(realComponent);
+
+        Component timeDecorator = new TimeDecorator(messageDecorator);
+
+        DecoratorPatternClient client = new DecoratorPatternClient(timeDecorator);
+
+        client.execute();
     }
 }
