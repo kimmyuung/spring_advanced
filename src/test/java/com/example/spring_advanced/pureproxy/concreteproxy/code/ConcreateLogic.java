@@ -8,4 +8,7 @@ public class ConcreateLogic {
         log.info("ConcreateLogic execute");
         return "data";
     }
+
+    public void opeation() {
+    }
 }

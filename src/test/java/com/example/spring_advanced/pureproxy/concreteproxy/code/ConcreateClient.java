@@ -9,6 +9,6 @@ public class ConcreateClient {
     }
 
     public void exeute() {
-        concreateLogic.opeation();
+        concreateLogic.operation();
     }
 }
