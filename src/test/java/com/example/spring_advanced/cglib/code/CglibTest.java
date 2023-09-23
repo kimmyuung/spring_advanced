@@ -25,4 +25,8 @@ public class CglibTest {
 
         proxy.call();
     }
+    // 문제점
+    // 인터페이스가 있는 경우에는 JDK 동적 프록시 적용 그렇지 않은 경우 CGLIB를 적용
+    // 두 기술 함께 사용 시에 JDK 제공하는 InvocationHanldler와 CGLIB가 제공하는 MethodInterceptor를 각각 중복으로 생성하여 관리해야 하는가
+    // 스프링은 동적 프록시를 통합해서 편리하게 만들어주는 프록시 팩토리 라는 기능을 제공
 }
