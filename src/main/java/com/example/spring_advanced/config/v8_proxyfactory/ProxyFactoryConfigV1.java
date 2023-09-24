@@ -55,4 +55,11 @@ public class ProxyFactoryConfigV1 {
         LogTraceAdvice advice = new LogTraceAdvice(logTrace);
         return new DefaultPointcutAdvisor(pointcut, advice);
     }
+
+    // 어드바이저, 어드바이스, 포인트컷 이라는 개념 덕분에 어떠 부가 기능을 어디에 적용할지 알 수 있었다.
+
+    // 다만 너무 많은 설정이 있음
+    // 컴포넌트 스캔 : 컴포넌트 스캔을 사용하는 경우 지금까지 학습한 방법으로는 프록시 적용이 불가능
+    // 학습 프록시 적용을 위해서는 실제 객체를 스프링 컨테이너에 등록하는 것이 아니라 실제 객체 대신 스프링 컨테이너에 빈으로 등록해야 한다.
+
 }
