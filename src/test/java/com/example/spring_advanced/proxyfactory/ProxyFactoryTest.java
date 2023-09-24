@@ -72,6 +72,7 @@ public class ProxyFactoryTest {
         assertThat(AopUtils.isAopProxy(proxy)).isTrue();
         assertThat(AopUtils.isJdkDynamicProxy(proxy)).isTrue();
         assertThat(AopUtils.isCglibProxy(proxy)).isFalse();
+
     }
 
     // 프록시 팩토리의 기술 선택 방법
