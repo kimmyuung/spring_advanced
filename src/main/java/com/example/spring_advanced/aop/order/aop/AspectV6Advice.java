@@ -8,6 +8,15 @@ import org.aspectj.lang.annotation.*;
 @Slf4j
 @Aspect
 public class AspectV6Advice {
+
+    // 어드바이스 종류
+    // @Around : 메서드 호출 전후에 수행, 가장 강력한 어드바이스, 조인 포인트 실행 여부 선택, 반환 값 변환, 예외 변환 등이 가능
+    // @Before : 조인 포인트 실행 전에 수행
+    // @After Returning : 조인 포인트가 정상 완료 후 실행
+    // @After Throwing : 메서드가 예외를 던지는 경우 실행
+    // @After : 조인 포인트가 정상 또는 예외에 관계없이 실행(finally)
+    // 실행 순서 : Around -> Before -> After -> AfterReturning -> AfterThrowing
+    // 좋은 설계는 제약이 있는 설계
     @Around("com.example.spring_advanced.aop.order.aop.PointCuts.orderAndService()")
     public Object doTransaction(ProceedingJoinPoint joinPoint) throws Throwable
     {
@@ -39,7 +48,7 @@ public class AspectV6Advice {
         // 리턴문이 없기 때문에, 결과물의 조작이 불가능하다.
         log.info("[return] {} return={}", joinPoint.getSignature(), result);
     }
-
+    //
     @AfterReturning(value = "com.example.spring_advanced.aop.order.aop.PointCuts.orderAndService()", returning = "result")
     public void doReturnString(JoinPoint joinPoint, Integer result) {   // 받을 수 없는 타입이라 아예 실행이 안 된다.
         log.info("[return2] {} return={}", joinPoint.getSignature(), result);
