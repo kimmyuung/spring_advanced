@@ -46,4 +46,11 @@ public class WithinTest {
         pointcut.setExpression("within(com.example.spring_advanced.aop.member.MemberService)");
         Assertions.assertThat(pointcut.matches(method, MemberServiceImpl.class)).isFalse();
     }
+
+    @Test
+    @DisplayName("execution은 타입 기반, 인터페이스 선정 가능")
+    void executionSuperTypeTrue() {
+        pointcut.setExpression("execution(com.example.spring_advanced.aop.member.MemberService.*(..))");
+        Assertions.assertThat(pointcut.matches(method, MemberServiceImpl.class)).isTrue();
+    }
 }
