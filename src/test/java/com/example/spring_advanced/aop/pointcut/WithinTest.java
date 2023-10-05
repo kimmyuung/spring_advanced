@@ -53,4 +53,8 @@ public class WithinTest {
         pointcut.setExpression("execution(com.example.spring_advanced.aop.member.MemberService.*(..))");
         Assertions.assertThat(pointcut.matches(method, MemberServiceImpl.class)).isTrue();
     }
+
+    // @target은 인스턴스의 모든 메서드를 조인 포인트로 적용
+    // @within은 해당 타입 내에 있는 메서드만 조인 포인트로 적용
+
 }
