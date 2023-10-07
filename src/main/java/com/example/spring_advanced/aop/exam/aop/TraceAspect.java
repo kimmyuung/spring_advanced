@@ -14,4 +14,6 @@ public class TraceAspect {
         Object[] args = joinpoint.getArgs();
         log.info("[trace] {} args = {}" , joinpoint.getSignature(), args);
     }
+
+
 }
